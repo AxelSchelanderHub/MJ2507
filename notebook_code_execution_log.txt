@@ -1,0 +1,128 @@
+
+=== 4-fold expanding-window time-series CV (24h gaps) ===
+Early stopping at epoch 610; best validation loss 0.4376
+Fold 1: train=2,626, inner val=728, score=654 | balanced acc=0.684 | macro F1=0.729 | ROC AUC=0.781 | cutoff=0.20
+Early stopping at epoch 1290; best validation loss 0.3341
+Fold 2: train=3,149, inner val=859, score=654 | balanced acc=0.711 | macro F1=0.743 | ROC AUC=0.852 | cutoff=0.19
+Early stopping at epoch 740; best validation loss 0.5520
+Fold 3: train=3,672, inner val=990, score=654 | balanced acc=0.858 | macro F1=0.824 | ROC AUC=0.936 | cutoff=0.30
+Early stopping at epoch 460; best validation loss 0.5574
+Fold 4: train=4,196, inner val=1,120, score=654 | balanced acc=0.784 | macro F1=0.758 | ROC AUC=0.824 | cutoff=0.28
+
+=== CV out-of-fold threshold comparison (Home=1 positive) ===
+ threshold  accuracy  precision_home  recall_home  f1_home
+     0.250     0.896           0.937        0.945    0.941
+     0.300     0.894           0.943        0.935    0.939
+     0.350     0.883           0.946        0.917    0.931
+     0.400     0.854           0.947        0.880    0.913
+     0.450     0.828           0.949        0.847    0.895
+     0.500     0.794           0.951        0.804    0.871
+     0.550     0.742           0.951        0.741    0.833
+     0.600     0.704           0.962        0.686    0.801
+     0.650     0.657           0.965        0.627    0.760
+     0.700     0.602           0.972        0.558    0.709
+     0.750     0.531           0.969        0.475    0.637
+CV balanced accuracy: 0.759 ± 0.078
+Usable observations: 8,838 | Features: 5
+Final holdout: last 7 calendar dates, 2020-05-25 through 2020-05-31 (2,004 readings)
+Source: MAIN final-data sheet only (including final humidity); chronological split and 24h gap
+WARNING: Final humidity may have been interpolated using future raw readings upstream; source-level causality is unverified.
+Train       n=5340 | Home rate=88.0% | 2020-05-01 06:30:00 to 2020-05-19 19:25:00
+Validation  n= 918 | Home rate=89.4% | 2020-05-20 19:30:00 to 2020-05-23 23:55:00
+Test        n=2004 | Home rate=70.3% | 2020-05-25 00:00:00 to 2020-05-31 22:55:00.255000
+Network architecture: 5 -> 12 (tanh) -> 1 (sigmoid)
+Early stopping at epoch 670; best validation loss 0.4532
+Class weights: {0: 4.1653666146645865, 1: 0.5682060012768674}; validation-selected threshold = 0.23
+
+VALIDATION (threshold=0.23)
+Accuracy:          0.898
+Balanced accuracy: 0.756
+Precision (home): 0.949
+Recall (home):    0.935
+F1 (home):        0.942
+F1 (macro):       0.743
+ROC AUC:          0.843
+Confusion matrix [[Away->Away, Away->Home], [Home->Away, Home->Home]]:
+[[ 56  41]
+ [ 53 768]]
+              precision    recall  f1-score   support
+
+    Away (0)       0.51      0.58      0.54        97
+    Home (1)       0.95      0.94      0.94       821
+
+    accuracy                           0.90       918
+   macro avg       0.73      0.76      0.74       918
+weighted avg       0.90      0.90      0.90       918
+
+
+TEST (never used for training or tuning) (threshold=0.23)
+Accuracy:          0.767
+Balanced accuracy: 0.698
+Precision (home): 0.812
+Recall (home):    0.870
+F1 (home):        0.840
+F1 (macro):       0.707
+ROC AUC:          0.843
+Confusion matrix [[Away->Away, Away->Home], [Home->Away, Home->Home]]:
+[[ 313  283]
+ [ 183 1225]]
+              precision    recall  f1-score   support
+
+    Away (0)       0.63      0.53      0.57       596
+    Home (1)       0.81      0.87      0.84      1408
+
+    accuracy                           0.77      2004
+   macro avg       0.72      0.70      0.71      2004
+weighted avg       0.76      0.77      0.76      2004
+
+Majority-class baseline accuracy (always predict training majority): 0.703
+
+=== Holdout threshold comparison (DIAGNOSTIC ONLY — never use to select threshold) ===
+ threshold  accuracy  precision_home  recall_home  f1_home
+     0.250     0.782           0.838        0.856    0.847
+     0.300     0.792           0.872        0.825    0.848
+     0.350     0.801           0.910        0.795    0.849
+     0.400     0.789           0.929        0.758    0.835
+     0.450     0.780           0.936        0.737    0.825
+     0.500     0.760           0.942        0.702    0.805
+     0.550     0.745           0.941        0.680    0.789
+     0.600     0.708           0.942        0.622    0.749
+     0.650     0.673           0.942        0.569    0.709
+     0.700     0.630           0.957        0.495    0.653
+     0.750     0.572           0.965        0.406    0.571
+
+Saved trained model, test predictions and plots to: /tmp/verify_occ_nb_11pigw9i/occupancy_nn_outputs
+Expanding-window fold layout:
+<IPython.core.display.Image object>
+Threshold comparison:
+<IPython.core.display.Image object>
+Original performance dashboard:
+<IPython.core.display.Image object>
+Expanding-window cross-validation, pooled outer-fold predictions
+    threshold  accuracy  precision_home  recall_home  f1_home
+0        0.25     0.896           0.937        0.945    0.941
+1        0.30     0.894           0.943        0.935    0.939
+2        0.35     0.883           0.946        0.917    0.931
+3        0.40     0.854           0.947        0.880    0.913
+4        0.45     0.828           0.949        0.847    0.895
+5        0.50     0.794           0.951        0.804    0.871
+6        0.55     0.742           0.951        0.741    0.833
+7        0.60     0.704           0.962        0.686    0.801
+8        0.65     0.657           0.965        0.627    0.760
+9        0.70     0.602           0.972        0.558    0.709
+10       0.75     0.531           0.969        0.475    0.637
+Final test set — descriptive only; no tuning
+    threshold  accuracy  precision_home  recall_home  f1_home
+0        0.25     0.782           0.838        0.856    0.847
+1        0.30     0.792           0.872        0.825    0.848
+2        0.35     0.801           0.910        0.795    0.849
+3        0.40     0.789           0.929        0.758    0.835
+4        0.45     0.780           0.936        0.737    0.825
+5        0.50     0.760           0.942        0.702    0.805
+6        0.55     0.745           0.941        0.680    0.789
+7        0.60     0.708           0.942        0.622    0.749
+8        0.65     0.673           0.942        0.569    0.709
+9        0.70     0.630           0.957        0.495    0.653
+10       0.75     0.572           0.965        0.406    0.571
+{'probability_home': 0.9572442539974103, 'predicted_home': 1, 'threshold': 0.23}
+NOTEBOOK EXECUTION SUCCESS

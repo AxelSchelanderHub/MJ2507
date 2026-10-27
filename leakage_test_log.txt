@@ -1,0 +1,11 @@
+PASS 1: Main-sheet final humidity only; alternative humidity sheet never read
+PASS: Fixed final seven calendar dates, May 25–31 (2,004 source readings)
+PASS 2: Final holdout disjoint with 24-hour embargo
+PASS 3: Four explicitly expanding training windows; fixed earliest start and increasing size; embargoed validation/scoring
+PASS 4: Changing all final test labels/features cannot affect CV folds or training transforms
+PASS 5: Saved cross-validation fold metadata and predictions are consistent
+PASS 6: CV threshold comparison contains exactly 0.25–0.75 by 0.05 with correctly recomputed accuracy, precision, recall, F1
+PASS 7: Saved model, final threshold and test diagnostic threshold sweep agree
+
+ALL SEVEN STRUCTURAL LEAKAGE / REPRODUCIBILITY CHECKS PASSED.
+LIMITATION: Upstream interpolation of main-sheet humidity remains unverified.
