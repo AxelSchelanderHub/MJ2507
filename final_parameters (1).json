@@ -1,0 +1,38 @@
+{
+  "minutes": 5,
+  "family": "levels_clock",
+  "hidden": 16,
+  "activation": "tanh",
+  "optimizer": "adam",
+  "lr": 0.01,
+  "l2": 0.1,
+  "class_power": 1.0,
+  "transition_boost": 1.0,
+  "epochs": 900,
+  "seeds": [
+    42,
+    7,
+    21
+  ],
+  "best_epochs": [
+    880,
+    40,
+    40
+  ],
+  "policy": {
+    "threshold": 0.47,
+    "half_life": 0,
+    "hysteresis": 0.0
+  },
+  "features": [
+    "CO2 (ppm)",
+    "Light (lux)",
+    "Indoor temperature (\u00b0C)",
+    "Outdoor temperature (\u00b0C)",
+    "hour_sin",
+    "hour_cos",
+    "weekend",
+    "night"
+  ],
+  "model_sha256": "5213fd31fc5524cdbed4b8e2fe8c9977634f9067c3b6c44495e25ac136551264"
+}

@@ -1,0 +1,35 @@
+{
+  "config": {
+    "minutes": 5,
+    "family": "levels_clock",
+    "hidden": 16,
+    "activation": "tanh",
+    "optimizer": "adam",
+    "lr": 0.01,
+    "l2": 0.1,
+    "class_power": 1.0,
+    "transition_boost": 1.0,
+    "epochs": 900,
+    "check_every": 10,
+    "patience_checks": 15,
+    "min_delta": 1e-05,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "adam_gradient_weight1": 0.1,
+    "adam_gradient_weight2": 0.001,
+    "adam_epsilon": 1e-08,
+    "init_scale": 1.0,
+    "transition_minutes": 15.0,
+    "transition_max_gap_minutes": 31.0,
+    "history_minutes": 60,
+    "delta_minutes": [
+      5,
+      30,
+      60
+    ],
+    "night_start_hour": 19.0,
+    "night_end_hour": 7.0,
+    "scale_floor": 1e-08
+  },
+  "selection": "Configured base model; search skipped"
+}

@@ -1,0 +1,62 @@
+{
+  "minutes": 5,
+  "family": "levels_clock",
+  "hidden": 16,
+  "activation": "tanh",
+  "optimizer": "adam",
+  "lr": 0.01,
+  "l2": 0.1,
+  "class_power": 1.0,
+  "transition_boost": 1.0,
+  "epochs": 900,
+  "check_every": 10,
+  "patience_checks": 15,
+  "min_delta": 1e-05,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.999,
+  "adam_gradient_weight1": 0.1,
+  "adam_gradient_weight2": 0.001,
+  "adam_epsilon": 1e-08,
+  "init_scale": 1.0,
+  "transition_minutes": 15.0,
+  "transition_max_gap_minutes": 31.0,
+  "history_minutes": 60,
+  "delta_minutes": [
+    5,
+    30,
+    60
+  ],
+  "night_start_hour": 19.0,
+  "night_end_hour": 7.0,
+  "scale_floor": 1e-08,
+  "seeds": [
+    42,
+    7,
+    21
+  ],
+  "split_settings": {
+    "stop_window_hours": 48,
+    "gap_hours": 24
+  },
+  "best_epochs": [
+    880,
+    40,
+    40
+  ],
+  "policy": {
+    "threshold": 0.47,
+    "half_life": 0,
+    "hysteresis": 0.0
+  },
+  "features": [
+    "CO2 (ppm)",
+    "Light (lux)",
+    "Indoor temperature (\u00b0C)",
+    "Outdoor temperature (\u00b0C)",
+    "hour_sin",
+    "hour_cos",
+    "weekend",
+    "night"
+  ],
+  "model_sha256": "a2230c3ae90d81da03751086bb42562d32a18680006db7587e9ba12fac38bd05"
+}
