@@ -1,18 +1,9 @@
 """
 Unified Occupancy Detection with Logistic Regression (MJ2507)
 =============================================================
-
-Combines:
-1. Course-compliant Logistic Regression from scratch:
-   sigmoid, initialize_with_zeros, propagate, optimize, predict_proba, predict
-2. Expanding-window time series cross-validation with embargo gaps
-3. High-impact physical & behavioral features:
-   - CO2 rate-of-change (CO2_diff) to detect arrivals/departures
-   - Cyclical hour-of-day (hour_sin, hour_cos)
-   - Weekday/weekend & Day/Night indicators
-4. Validation-tuned thresholding optimizing Balanced Accuracy (protecting Away Recall)
-5. Multi-interval comparison loop (5 min, 10 min, 15 min) + diagnostic dashboard
-"""
+This script implements a unified logistic regression pipeline for occupancy detection
+using sensor data. It supports multiple sampling intervals, expanding-window cross-validation,
+and threshold tuning to optimize balanced accuracy while maintaining parity between home and away recall."""
 
 import copy
 import sys
@@ -33,11 +24,11 @@ PLOT_INTERVAL = 10                                    # Which interval to genera
 
 TEST_DAYS = 7                 # Held-out test window (last N days)
 NUM_ITERATIONS = 30000        # Gradient descent steps
-LEARNING_RATE = 0.01          # Step size alpha (tuned for Z-score normalized inputs)
+LEARNING_RATE = 0.005          # Step size alpha (tuned for Z-score normalized inputs)
 
 # Expanding-Window Cross-Validation Settings
 N_FOLDS = 4
-EMBARGO_HOURS = 6             # Buffer gap to prevent temporal leakage
+EMBARGO_HOURS = 24             # Buffer gap to prevent temporal leakage
 VAL_DAYS = 3                  # Inner validation window for threshold tuning
 OUTER_TEST_DAYS = 3           # Outer scoring window per fold
 
@@ -371,7 +362,7 @@ def expanding_window_cv(df, feature_names, n_folds=4,
 
         # Tune threshold on validation set for Balanced Accuracy
         val_proba = predict_proba(w, b, X_val)
-        best_thr, _ = find_best_threshold(Y_val, val_proba, metric="macro_f1", max_recall_gap=0.08)
+        best_thr, _ = find_best_threshold(Y_val, val_proba, metric="balanced_accuracy", max_recall_gap=0.08)
 
         # Evaluate on outer fold test window
         test_proba = predict_proba(w, b, X_test)
