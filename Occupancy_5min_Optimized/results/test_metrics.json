@@ -1,0 +1,45 @@
+{
+  "tp": 876,
+  "tn": 549,
+  "fp": 47,
+  "fn": 532,
+  "arrivals": 56,
+  "departures": 57,
+  "arrivals_detected": 10,
+  "departures_detected": 7,
+  "false_events": 54,
+  "observed_days": 6.958333333333333,
+  "median_delay_minutes": 15.0,
+  "accuracy": 0.7110778443113772,
+  "home_recall": 0.6221590909090909,
+  "away_recall": 0.9211409395973155,
+  "home_precision": 0.9490790899241603,
+  "away_precision": 0.5078630897317299,
+  "balanced_accuracy": 0.7716500152532032,
+  "macro_f1": 0.703174679918866,
+  "event_recall": 0.1504424778761062,
+  "event_precision": 0.23943661971830985,
+  "event_f2": 0.16252390057361377,
+  "arrival_recall": 0.17857142857142858,
+  "departure_recall": 0.12280701754385964,
+  "false_events_per_day": 7.7604790419161676,
+  "utility": 0.4670869579134085,
+  "roc_auc": 0.8445412599145821,
+  "average_precision_away": 0.6367848175221819,
+  "away_f1": 0.6547406082289803,
+  "home_f1": 0.7516087516087516,
+  "macro_precision": 0.7284710898279452,
+  "confusion_matrix": [
+    [
+      549,
+      47
+    ],
+    [
+      532,
+      876
+    ]
+  ],
+  "test_samples": 2004,
+  "home_count": 1408,
+  "threshold": 0.47
+}

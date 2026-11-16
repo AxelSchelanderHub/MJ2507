@@ -1,0 +1,16 @@
+{
+  "config_id": 11,
+  "config": {
+    "minutes": 5,
+    "family": "levels_clock",
+    "hidden": 16,
+    "activation": "tanh",
+    "optimizer": "adam",
+    "lr": 0.01,
+    "l2": 0.1,
+    "class_power": 1.0,
+    "transition_boost": 1.0,
+    "epochs": 900
+  },
+  "validation_balanced_accuracy": 0.7836706159288308
+}
